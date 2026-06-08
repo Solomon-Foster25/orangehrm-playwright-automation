@@ -1,14 +1,14 @@
 import { BasePage } from "./BasePage";
 
-export class LoginPage extends BasePage{
+export class LoginPage extends BasePage {
     // Initialize locators in constructor
 
     constructor(page) {
-        this.page = page; // Initializes page
+        super(page); // Initializes page
         this.usernameInput = page.getByPlaceholder('Username'); // Locates username
         this.passwordInput = page.getByPlaceholder('Password'); // Locates password
         this.loginButton = page.getByRole('button', {name: 'Login'}); // Locates login button
-        this.forgotButton = page.getByText('Forgot your password? '); // Locates forgot your password
+        this.forgotButton = page.getByText('Forgot your password?'); // Locates forgot your password
         
     }
 

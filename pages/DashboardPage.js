@@ -1,10 +1,10 @@
-import { expect } from "@playwright/test";
+import { BasePage } from "./BasePage";
 
-export class DashboardPage {
+export class DashboardPage extends BasePage {
     // Initialize locators in constructor
 
     constructor(page) {
-        this.page = page; // Initializes page
+        super(page); // Initializes page
         this.dashboardTitle = page.getByRole('heading', {name: 'Dashboard'}); // Locates title 'Dashboard'
         this.timeAtWork = page.getByText('Time at Work'); // Locates tite 'Time at Work'
         // Quick Launch selectors
