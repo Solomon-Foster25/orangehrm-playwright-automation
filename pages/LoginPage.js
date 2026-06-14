@@ -9,7 +9,8 @@ export class LoginPage extends BasePage {
         this.passwordInput = page.getByPlaceholder('Password'); // Locates password
         this.loginButton = page.getByRole('button', {name: 'Login'}); // Locates login button
         this.forgotButton = page.getByText('Forgot your password?'); // Locates forgot your password
-        
+        this.errorMessage = page.getByText('Invalid credentials'); // Locates error message
+        this.requiredMessage = page.getByText('Required') // Locates required message
     }
 
     // Navigate to login page
