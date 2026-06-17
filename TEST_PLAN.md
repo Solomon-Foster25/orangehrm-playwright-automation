@@ -58,7 +58,7 @@ covering authentication, core HR workflows, and cross-browser reliability.
   (`isVisible()`) created a race condition where the assertion ran before the error
   message rendered. Resolved by switching to Playwright's auto-waiting web-first
   assertions, which eliminated the flakiness across all three browsers.
-
+- **Data-dependent Widgets** - The "Employees on Leave Today," "Employee Distribution by Sub Unit," and "Employee Distribution by Location" widgets are excluded from the visibility suite because they only render when corresponding data exists. On the public demo (which resets periodically), asserting their presence would produce intermittent failures unrelated to actual defects.
 ---
 
 ## 5. Test Coverage Summary
@@ -66,7 +66,7 @@ covering authentication, core HR workflows, and cross-browser reliability.
 | Suite          | Area                          | Test Cases | Status        |
 |----------------|-------------------------------|-----------:|---------------|
 | login.spec.js  | Authentication                | 8          | Complete      |
-| dashboard.spec.js | Dashboard widgets          | TBD        | Not started   |
+| dashboard.spec.js | Dashboard widgets          | 5        | Complete   |
 | pim.spec.js    | Employee management           | TBD        | Not started   |
 | admin.spec.js  | User management & roles       | TBD        | Not started   |
 | leave.spec.js  | Leave management              | TBD        | Not started   |
