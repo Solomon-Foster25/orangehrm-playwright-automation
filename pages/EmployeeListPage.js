@@ -1,4 +1,4 @@
-import { BasePage } from "./BasePage"
+import { BasePage } from "./BasePage";
 
 export class EmployeeListPage extends BasePage {
 
@@ -19,7 +19,7 @@ export class EmployeeListPage extends BasePage {
         await this.navigate('/web/index.php/pim/viewEmployeeList')
     };
 
-    async searchByName(name) {
+    async searchName(name) {
         await this.searchByName.fill(name);
         await this.searchButton.click();
     };
