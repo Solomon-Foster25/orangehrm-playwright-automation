@@ -59,6 +59,7 @@ covering authentication, core HR workflows, and cross-browser reliability.
   message rendered. Resolved by switching to Playwright's auto-waiting web-first
   assertions, which eliminated the flakiness across all three browsers.
 - **Data-dependent Widgets** - The "Employees on Leave Today," "Employee Distribution by Sub Unit," and "Employee Distribution by Location" widgets are excluded from the visibility suite because they only render when corresponding data exists. On the public demo (which resets periodically), asserting their presence would produce intermittent failures unrelated to actual defects.
+-**Brittle locators** - OrangeHRM has brittle locators on some of its pages --- notably the Employee ID inputs on the PIM pages, using 'nth(n)' index locators which could cause complications. If any potential fields are added, this would move the input's location away from that exact index number and causing the wrong input to be selected.
 ---
 
 ## 5. Test Coverage Summary
