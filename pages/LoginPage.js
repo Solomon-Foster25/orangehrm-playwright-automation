@@ -17,7 +17,7 @@ export class LoginPage extends BasePage {
 
     async goto() {
         await this.navigate('/web/index.php/auth/login'); 
-    }
+    };
 
     // Fill in credentials and submit the form
 
