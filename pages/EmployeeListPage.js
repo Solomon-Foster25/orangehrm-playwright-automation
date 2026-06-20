@@ -5,7 +5,7 @@ export class EmployeeListPage extends BasePage {
     constructor(page) {
         super(page);
         
-        this.searchByName = page.getByRole('textbox', { name: 'Type for hints...' });
+        this.searchByName = page.getByRole('textbox', { name: 'Type for hints...' }).first();
         this.employeeID = page.getByRole('textbox').nth(2);
         this.searchButton = page.getByRole('button', { name: 'Search' });
         this.resetButton = page.getByRole('button', { name: 'Reset' });
@@ -21,7 +21,10 @@ export class EmployeeListPage extends BasePage {
 
     async searchName(name) {
         await this.searchByName.fill(name);
+        const option = this.page.getByRole('option', {name: name});
+        await option.click();
         await this.searchButton.click();
+        await this.waitForSpinner();
     };
 
     async searchById(id) {
