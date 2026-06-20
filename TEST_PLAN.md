@@ -80,6 +80,7 @@ Document anything notable discovered while testing — unexpected behavior, bugs
 quirks worth recording.
 
 - Username trailing-whitespace trimming — The login username field trims trailing whitespace before authenticating; 'Admin ' (with a trailing space) successfully logs in as 'Admin'. Confirmed by running the test rather than assumed. Expected results for the whitespace test case were set based on this observed behavior.
+- PIM employee name search is an autocomplete; tests type the name, wait for the suggestion dropdown, and select the matching option before searching — mirroring real user interaction.
 ---
 
 ## 7. Test Environment
