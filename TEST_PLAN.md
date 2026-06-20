@@ -67,8 +67,8 @@ covering authentication, core HR workflows, and cross-browser reliability.
 | Suite          | Area                          | Test Cases | Status        |
 |----------------|-------------------------------|-----------:|---------------|
 | login.spec.js  | Authentication                | 8          | Complete      |
-| dashboard.spec.js | Dashboard widgets          | 5        | Complete   |
-| pim.spec.js    | Employee management           | TBD        | Not started   |
+| dashboard.spec.js | Dashboard widgets          | 5          | Complete   |
+| pim.spec.js    | Employee management           | 5          | Complete   |
 | admin.spec.js  | User management & roles       | TBD        | Not started   |
 | leave.spec.js  | Leave management              | TBD        | Not started   |
 
