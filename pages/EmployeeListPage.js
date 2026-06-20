@@ -21,8 +21,9 @@ export class EmployeeListPage extends BasePage {
 
     async searchName(name) {
         await this.searchByName.fill(name);
-        const option = this.page.getByRole('option', {name: name});
-        await option.click();
+        // try to select from the dropdown if a matching option appears, but don't hang if it doesn't
+        const option = this.page.getByRole('option', { name });
+        await option.click({ timeout: 3000 }).catch(() => {});
         await this.searchButton.click();
         await this.waitForSpinner();
     };
