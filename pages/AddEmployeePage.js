@@ -17,14 +17,14 @@ export class AddEmployeePage extends BasePage {
         await this.navigate('/web/index.php/pim/addEmployee');
     };
 
-    async addEmployee(first, middle, last, id) {
+    async addEmployee(first, last, middle = '', id = null) {
         await this.firstName.fill(first);
         if (middle) await this.middleName.fill(middle);
         await this.lastName.fill(last);
         if (id) {
-            await this.employeeId.fill(id);  // overrides the auto-populated ID
+            await this.employeeId.fill(id);
         }
         await this.saveButton.click();
-    };
+    }
 
 } 
