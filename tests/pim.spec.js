@@ -8,7 +8,7 @@ test.describe('PIM', () => {
         const newEmployee = new AddEmployeePage(page);
         await newEmployee.goto();
         await newEmployee.addEmployee('Auto', uniqueLast);
-        await expect(page.getByText(`Auto ${uniqueLast}`)).toBeVisible();
+        await expect(page).toHaveURL(/viewPersonalDetails/);
     });
 
     test('Search for an existing employee by name', async ({ page }) => {

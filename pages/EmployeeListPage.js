@@ -16,14 +16,15 @@ export class EmployeeListPage extends BasePage {
     }
 
     async goto() {
-        await this.navigate('/web/index.php/pim/viewEmployeeList')
+        await this.navigate('/web/index.php/pim/viewEmployeeList');
+        await this.waitForSpinner();
     };
 
     async searchName(name) {
         await this.searchByName.fill(name);
-        // try to select from the dropdown if a matching option appears, but don't hang if it doesn't
+        await this.page.getByText('Searching...').waitFor({ state: 'hidden' }).catch(() => {});
         const option = this.page.getByRole('option', { name });
-        await option.click({ timeout: 3000 }).catch(() => {});
+        await option.click({ timeout: 2000 }).catch(() => {});
         await this.searchButton.click();
         await this.waitForSpinner();
     };

@@ -15,6 +15,7 @@ export class AddEmployeePage extends BasePage {
 
     async goto() {
         await this.navigate('/web/index.php/pim/addEmployee');
+        await this.waitForSpinner();
     };
 
     async addEmployee(first, last, middle = '', id = null) {
