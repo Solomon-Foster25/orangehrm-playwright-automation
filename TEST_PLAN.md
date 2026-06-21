@@ -28,7 +28,7 @@ covering authentication, core HR workflows, and cross-browser reliability.
   the modules with the richest forms and validation, where automated coverage adds the
   most value.
 - **Load / performance testing** — out of scope for a functional automation project.
-
+- **Leave module** — Excluded because the public demo user has no leave entitlements configured ("No Leave Types with Leave Balance"), so the apply-leave form does not render and cannot be validated. Configuring entitlements would not persist reliably across demo resets, making such tests fragile. Validation testing is already demonstrated in the PIM and Admin suites.
 ---
 
 ## 3. Test Approach
@@ -69,9 +69,9 @@ covering authentication, core HR workflows, and cross-browser reliability.
 | Suite          | Area                          | Test Cases | Status        |
 |----------------|-------------------------------|-----------:|---------------|
 | login.spec.js  | Authentication                | 8          | Complete      |
-| dashboard.spec.js | Dashboard widgets          | 5          | Complete   |
-| pim.spec.js    | Employee management           | 5          | Complete   |
-| admin.spec.js  | User management & roles       | 5          | Complete   |
+| dashboard.spec.js | Dashboard widgets          | 5          | Complete      |
+| pim.spec.js    | Employee management           | 5          | Complete      |
+| admin.spec.js  | User management & roles       | 5          | Complete      |
 | leave.spec.js  | Leave management              | TBD        | Not started   |
 
 ---
