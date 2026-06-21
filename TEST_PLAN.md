@@ -60,6 +60,8 @@ covering authentication, core HR workflows, and cross-browser reliability.
   assertions, which eliminated the flakiness across all three browsers.
 - **Data-dependent Widgets** - The "Employees on Leave Today," "Employee Distribution by Sub Unit," and "Employee Distribution by Location" widgets are excluded from the visibility suite because they only render when corresponding data exists. On the public demo (which resets periodically), asserting their presence would produce intermittent failures unrelated to actual defects.
 -**Brittle locators** - OrangeHRM has brittle locators on some of its pages --- notably the Employee ID inputs on the PIM pages, using 'nth(n)' index locators which could cause complications. If any potential fields are added, this would move the input's location away from that exact index number and causing the wrong input to be selected.
+-**Transient toast notifications** — Success confirmation toasts (e.g. "Successfully Saved" on user creation) auto-dismiss after a few seconds and proved flaky to assert against, failing intermittently on Firefox due to slower form-fill timing. Resolved by asserting on durable post-action state (navigation / record presence) rather than the transient toast. This mirrors the earlier auth-suite flakiness and reflects a consistent principle: assert on persistent state, not fleeting UI.
+-**Locator challenges in Admin module** — The add-user form required several non-standard locator strategies because the app lacks test-friendly attributes: custom `oxd-select` dropdowns (not native selects) require click-to-open then option-select; password fields have no accessible name and are located by `input[type="password"]`; dropdowns are located by their label group rather than placeholder text, because the "-- Select --" placeholder count changes as the form is filled.
 ---
 
 ## 5. Test Coverage Summary
@@ -69,7 +71,7 @@ covering authentication, core HR workflows, and cross-browser reliability.
 | login.spec.js  | Authentication                | 8          | Complete      |
 | dashboard.spec.js | Dashboard widgets          | 5          | Complete   |
 | pim.spec.js    | Employee management           | 5          | Complete   |
-| admin.spec.js  | User management & roles       | TBD        | Not started   |
+| admin.spec.js  | User management & roles       | 5          | Complete   |
 | leave.spec.js  | Leave management              | TBD        | Not started   |
 
 ---
