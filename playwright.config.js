@@ -71,6 +71,15 @@ export default defineConfig({
       dependencies: ['setup'],
     },
 
+    {
+      name: 'api',
+      use: {
+        baseURL: 'https://opensource-demo.orangehrmlive.com',
+        storageState: 'playwright/.auth/user.json',
+      },
+      dependencies: ['setup'],
+      testMatch: /api\.spec\.js/,
+    },
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',
