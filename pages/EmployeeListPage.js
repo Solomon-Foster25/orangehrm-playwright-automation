@@ -25,6 +25,7 @@ export class EmployeeListPage extends BasePage {
         await this.page.getByText('Searching...').waitFor({ state: 'hidden' }).catch(() => {});
         const option = this.page.getByRole('option', { name });
         await option.click({ timeout: 2000 }).catch(() => {});
+        await this.page.keyboard.press('Escape').catch(() => {});
         await this.searchButton.click();
         await this.waitForSpinner();
     };
