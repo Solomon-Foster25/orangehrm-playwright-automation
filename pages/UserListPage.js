@@ -26,14 +26,6 @@ export class UserListPage extends BasePage {
         await this.page.getByRole('option', { name: status }).click();
     }
 
-    // async searchUser(username, role, employee, status) {
-    //     await this.usernameInput.fill(username);
-    //     await this.selectRole(role);
-    //     await this.page.getByRole('option', { name: employee}).first().click({ timeout: 3000 }).catch(() => {});
-    //     await this.selectStatus(status);
-    //     await this.searchButton.click();
-    // }
-
     async searchUser(username) {
         await this.usernameInput.fill(username);
         await this.searchButton.click();

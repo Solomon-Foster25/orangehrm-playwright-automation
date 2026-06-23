@@ -12,9 +12,6 @@ export class AddUserPage extends BasePage {
         this.passwordInput = page.locator('input[type="password"]').first();
         this.confirmPassword = page.locator('input[type="password"]').nth(1);
         this.saveButton = page.getByRole('button', { name: 'Save' });
-        // this.employeeNameError = page.getByText('Required').first();
-        // this.usernameInputError = page.getByText('Required').nth(1);
-        // this.passwordInputError = page.getByText('Required').nth(2);
     }
 
     async goto() {

@@ -40,7 +40,6 @@ test.describe('OrangeHRM API', () => {
     const created = await createResponse.json();
     const empNumber = created.data.empNumber;
 
-    // Confirm it persisted by fetching it back (folds in the old "test 5")
     const getResponse = await request.get(`/web/index.php/api/v2/pim/employees/${empNumber}`);
     expect(getResponse.status()).toBe(200);
     const fetched = await getResponse.json();
