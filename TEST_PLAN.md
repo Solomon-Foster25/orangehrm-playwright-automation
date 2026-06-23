@@ -72,7 +72,7 @@ covering authentication, core HR workflows, and cross-browser reliability.
 | dashboard.spec.js | Dashboard widgets          | 5          | Complete      |
 | pim.spec.js    | Employee management           | 5          | Complete      |
 | admin.spec.js  | User management & roles       | 5          | Complete      |
-| leave.spec.js  | Leave management              | TBD        | Not started   |
+| leave.spec.js  | Leave management              | TBD        | Excluded  |
 
 ---
 
@@ -83,6 +83,7 @@ quirks worth recording.
 
 - Username trailing-whitespace trimming — The login username field trims trailing whitespace before authenticating; 'Admin ' (with a trailing space) successfully logs in as 'Admin'. Confirmed by running the test rather than assumed. Expected results for the whitespace test case were set based on this observed behavior.
 - PIM employee name search is an autocomplete; tests type the name, wait for the suggestion dropdown, and select the matching option before searching — mirroring real user interaction.
+- The "No Records Found" state surfaces both a table message and a transient toast
 ---
 
 ## 7. Test Environment
