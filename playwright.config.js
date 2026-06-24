@@ -24,6 +24,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
+    ['line'],
     ['html'],
     ['allure-playwright'],
   ],
@@ -46,6 +47,7 @@ export default defineConfig({
 
     {
       name: 'chromium',
+      testIgnore: /api\.spec\.js/,
       use: { 
         ...devices['Desktop Chrome'],
         storageState: 'playwright/.auth/user.json',
@@ -55,6 +57,7 @@ export default defineConfig({
 
     {
       name: 'firefox',
+      testIgnore: /api\.spec\.js/,
       use: { 
         ...devices['Desktop Firefox'],
         storageState: 'playwright/.auth/user.json',
@@ -64,6 +67,7 @@ export default defineConfig({
 
     {
       name: 'webkit',
+      testIgnore: /api\.spec\.js/,
       use: { 
         ...devices['Desktop Safari'],
         storageState: 'playwright/.auth/user.json',
