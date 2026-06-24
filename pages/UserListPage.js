@@ -14,6 +14,7 @@ export class UserListPage extends BasePage {
 
     async goto() {
         await this.navigate('/web/index.php/admin/viewSystemUsers');
+        await this.waitForSpinner();
     }
 
      async selectRole(role) {

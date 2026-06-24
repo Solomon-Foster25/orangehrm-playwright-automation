@@ -16,6 +16,7 @@ export class AddUserPage extends BasePage {
 
     async goto() {
         await this.navigate('/web/index.php/admin/saveSystemUser');
+        await this.waitForSpinner();
     }
 
     async selectRole(role) {
