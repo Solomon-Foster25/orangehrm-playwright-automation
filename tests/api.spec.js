@@ -14,11 +14,22 @@ test.describe('OrangeHRM API', () => {
   });
 
   test('GET a specific employee by ID and assert correct data', async ({ request }) => {
-    const response = await request.get('/web/index.php/api/v2/pim/employees/86');
+    const firstName = 'Get';
+    const lastName = `ById${Date.now()}`;
+    const employeeId = `${Date.now()}`.slice(-9);
+    const createResponse = await request.post('/web/index.php/api/v2/pim/employees', {
+      data: { firstName, lastName, employeeId },
+    });
+    expect(createResponse.status()).toBe(200);
+    const empNumber = (await createResponse.json()).data.empNumber;
+ 
+    // Fetch it back by its empNumber and assert the data
+    const response = await request.get(`/web/index.php/api/v2/pim/employees/${empNumber}`);
     expect(response.status()).toBe(200);
     const body = await response.json();
-    expect(body.data.employeeId).toBe('0295');
-    expect(body.data.firstName).toBeDefined();
+    expect(body.data.employeeId).toBe(employeeId);
+    expect(body.data.firstName).toBe(firstName);
+    expect(body.data.lastName).toBe(lastName);
   });
 
   test('POST creates an employee and it persists', async ({ request }) => {

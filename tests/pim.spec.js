@@ -11,18 +11,35 @@ test.describe('PIM', () => {
         await expect(page).toHaveURL(/viewPersonalDetails/);
     });
 
-    test('Search for an existing employee by name', async ({ page }) => {
+    test('Search for an existing employee by name', async ({ page, request }) => {
+        const firstName = 'Searchable';
+        const lastName = `Name${Date.now()}`;
+        const createResponse = await request.post('/web/index.php/api/v2/pim/employees', {
+            data: { firstName, lastName },
+        });
+        expect(createResponse.status()).toBe(200);
+ 
         const list = new EmployeeListPage(page);
         await list.goto();
-        await list.searchName('Emily Jones');
-        await expect(list.resultRowContaining('Emily Jones')).toBeVisible();
+        await list.searchName(`${firstName} ${lastName}`);
+        await expect(list.resultRowContaining(lastName)).toBeVisible();
+
     });
 
-    test('Search by employee ID', async ({ page }) => {
+    test('Search by employee ID', async ({ page, request }) => {
+        const firstName = 'Searchable';
+        const lastName = `Id${Date.now()}`;
+        const employeeId = `${Date.now()}`.slice(-9);
+        const createResponse = await request.post('/web/index.php/api/v2/pim/employees', {
+            data: { firstName, lastName, employeeId },
+        });
+        expect(createResponse.status()).toBe(200);
+ 
         const list = new EmployeeListPage(page);
         await list.goto();
-        await list.searchById('0303');
-        await expect(list.resultRowContaining('0303').first()).toBeVisible();
+        await list.searchById(employeeId);
+        await expect(list.resultRowContaining(employeeId).first()).toBeVisible();
+
     });
 
     test('Save add employee with fields empty', async ({ page }) => {
