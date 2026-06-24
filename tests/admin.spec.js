@@ -15,7 +15,12 @@ test.describe('Admin', () => {
         const newUser = new AddUserPage(page);
         await newUser.goto();
         await newUser.addUser('Admin', `${firstName} ${lastName}`, 'Enabled', uniqueUser, 'Password123', 'Password123');
+
+        const userList = new UserListPage(page);
+        await userList.goto();
+        await userList.searchUser(uniqueUser);
         await expect(page.getByText(uniqueUser)).toBeVisible();
+
     });
 
     test('Search for a user by username', async ({ page }) => {
