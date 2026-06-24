@@ -3,8 +3,8 @@ import {DashboardPage} from '../pages/DashboardPage';
 
 test.describe('Dashboard', () => {
     test('Dashboard loads after login', async ({page}) => {
-        await page.goto('/web/index.php/dashboard/index');
         const dashboard = new DashboardPage(page);
+        await dashboard.goto();
         await expect(dashboard.dashboardTitle).toBeVisible();
     });
     const widgets = [
@@ -16,9 +16,9 @@ test.describe('Dashboard', () => {
 
     for (const widget of widgets) {
         test(`Widget "${widget.name}" is visible`, async ({ page }) => {
-            await page.goto('/web/index.php/dashboard/index');
             const dashboard = new DashboardPage(page);
+            await dashboard.goto();
             await expect(widget.locator(dashboard)).toBeVisible();     
         });
-    };
+    }
 });
