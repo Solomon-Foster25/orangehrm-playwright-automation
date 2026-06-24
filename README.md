@@ -2,7 +2,7 @@
 
 [![Playwright Tests](https://github.com/Solomon-Foster25/orangehrm-playwright-automation/actions/workflows/playwright.yml/badge.svg)](https://github.com/Solomon-Foster25/orangehrm-playwright-automation/actions/workflows/playwright.yml)
 
-End-to-end and API test automation for the [OrangeHRM](https://opensource-demo.orangehrmlive.com) open-source demo, built with Playwright and JavaScript. The suite covers authentication, core HR workflows, and the REST API — running cross-browser on every push via GitHub Actions.
+End-to-end and API test automation for the [OrangeHRM](https://opensource-demo.orangehrmlive.com) open-source demo, built with Playwright and TypeScript. The suite covers authentication, core HR workflows, and the REST API — running cross-browser on every push via GitHub Actions.
 
 ## Highlights
 
@@ -28,33 +28,33 @@ End-to-end and API test automation for the [OrangeHRM](https://opensource-demo.o
 
 ## Tech Stack
 
-Playwright, JavaScript, Page Object Model, GitHub Actions, Allure Reporting. Tests run against the live OrangeHRM open-source demo.
+Playwright, TypeScript, Page Object Model, GitHub Actions, Allure Reporting. Tests run against the live OrangeHRM open-source demo.
 
 ## Architecture
 
-Page objects live in `/pages` and extend a shared `BasePage` for common helpers. Tests are organized by module under `/tests`. Authentication is handled once by a setup project (`auth.setup.js`) that logs in and saves the session, which all other suites reuse via storageState. The login suite explicitly opts out of the saved session so it can test the login flow from a logged-out state.
+Page objects live in `/pages` and extend a shared `BasePage` for common helpers. Tests are organized by module under `/tests`. Authentication is handled once by a setup project (`auth.setup.ts`) that logs in and saves the session, which all other suites reuse via storageState. The login suite explicitly opts out of the saved session so it can test the login flow from a logged-out state.
 
 ```
 orangehrm-playwright-automation/
     pages/
-        BasePage.js
-        LoginPage.js
-        DashboardPage.js
-        EmployeeListPage.js
-        AddEmployeePage.js
-        UserListPage.js
-        AddUserPage.js
+        BasePage.ts
+        LoginPage.ts
+        DashboardPage.ts
+        EmployeeListPage.ts
+        AddEmployeePage.ts
+        UserListPage.ts
+        AddUserPage.ts
     tests/
-        auth.setup.js
-        login.spec.js
-        dashboard.spec.js
-        pim.spec.js
-        admin.spec.js
-        api.spec.js
+        auth.setup.ts
+        login.spec.ts
+        dashboard.spec.ts
+        pim.spec.ts
+        admin.spec.ts
+        api.spec.ts
     .github/
         workflows/
             playwright.yml
-    playwright.config.js
+    playwright.config.ts
     TEST_PLAN.md
     README.md
 ```
@@ -77,7 +77,7 @@ npx playwright test
 Run a single suite:
 
 ```
-npx playwright test pim.spec.js
+npx playwright test pim.spec.ts
 ```
 
 Run against one browser:

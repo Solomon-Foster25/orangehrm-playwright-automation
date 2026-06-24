@@ -1,7 +1,14 @@
-import { BasePage } from "./BasePage";
+import { Page, Locator } from '@playwright/test';
+import { BasePage } from './BasePage';
 
 export class LoginPage extends BasePage {
-    constructor(page) {
+    readonly usernameInput: Locator;
+    readonly passwordInput: Locator;
+    readonly loginButton: Locator;
+    readonly errorMessage: Locator;
+    readonly requiredMessage: Locator;
+
+    constructor(page: Page) {
         super(page);
         this.usernameInput = page.getByPlaceholder('Username');
         this.passwordInput = page.getByPlaceholder('Password');
@@ -9,14 +16,14 @@ export class LoginPage extends BasePage {
         this.errorMessage = page.getByText('Invalid credentials');
         this.requiredMessage = page.getByText('Required');
     }
- 
-    async goto() {
+
+    async goto(): Promise<void> {
         await this.navigate('/web/index.php/auth/login');
     }
- 
-    async login(username, password) {
+
+    async login(username: string, password: string): Promise<void> {
         await this.usernameInput.fill(username);
         await this.passwordInput.fill(password);
         await this.loginButton.click();
     }
-};
+}

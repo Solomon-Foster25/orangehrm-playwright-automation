@@ -1,10 +1,19 @@
-import { BasePage } from "./BasePage";
+import { Page, Locator } from '@playwright/test';
+import { BasePage } from './BasePage';
 
 export class EmployeeListPage extends BasePage {
+    readonly searchByName: Locator;
+    readonly employeeID: Locator;
+    readonly searchButton: Locator;
+    readonly resetButton: Locator;
+    readonly resultsTable: Locator;
+    readonly resultsRow: Locator;
+    readonly noRecordsFound: Locator;
+    readonly addButton: Locator;
 
-    constructor(page) {
+    constructor(page: Page) {
         super(page);
-        
+
         this.searchByName = page.getByRole('textbox', { name: 'Type for hints...' }).first();
         this.employeeID = page.getByRole('textbox').nth(2);
         this.searchButton = page.getByRole('button', { name: 'Search' });
@@ -12,15 +21,15 @@ export class EmployeeListPage extends BasePage {
         this.resultsTable = page.getByRole('table');
         this.resultsRow = page.getByRole('row');
         this.noRecordsFound = page.getByText('No Records Found');
-        this.addButton = page.getByRole('button', { name: 'Add'});
+        this.addButton = page.getByRole('button', { name: 'Add' });
     }
 
-    async goto() {
+    async goto(): Promise<void> {
         await this.navigate('/web/index.php/pim/viewEmployeeList');
         await this.waitForSpinner();
-    };
+    }
 
-    async searchName(name) {
+    async searchName(name: string): Promise<void> {
         await this.searchByName.fill(name);
         await this.page.getByText('Searching...').waitFor({ state: 'hidden' }).catch(() => {});
         const option = this.page.getByRole('option', { name });
@@ -28,14 +37,14 @@ export class EmployeeListPage extends BasePage {
         await this.page.keyboard.press('Escape').catch(() => {});
         await this.searchButton.click();
         await this.waitForSpinner();
-    };
+    }
 
-    async searchById(id) {
+    async searchById(id: string): Promise<void> {
         await this.employeeID.fill(id);
         await this.searchButton.click();
-    };
+    }
 
-    resultRowContaining(text) {
+    resultRowContaining(text: string): Locator {
         return this.resultsRow.filter({ hasText: text });
-    };       
+    }
 }

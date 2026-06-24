@@ -1,7 +1,17 @@
-import { BasePage } from "./BasePage";
+import { Page, Locator } from '@playwright/test';
+import { BasePage } from './BasePage';
 
 export class DashboardPage extends BasePage {
-    constructor(page) {
+    readonly dashboardTitle: Locator;
+    readonly timeAtWork: Locator;
+    readonly myActions: Locator;
+    readonly latestPosts: Locator;
+    readonly quickLaunch: Locator;
+    readonly employeesOnLeave: Locator;
+    readonly employeeDistributionSubUnit: Locator;
+    readonly employeeDistributionLocation: Locator;
+
+    constructor(page: Page) {
         super(page);
 
         this.dashboardTitle = page.getByRole('heading', { name: 'Dashboard' });
@@ -14,7 +24,7 @@ export class DashboardPage extends BasePage {
         this.employeeDistributionLocation = page.getByText('Employee Distribution by Location');
     }
 
-    async goto() {
+    async goto(): Promise<void> {
         await this.navigate('/web/index.php/dashboard/index');
         await this.waitForSpinner();
     }

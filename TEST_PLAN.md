@@ -4,7 +4,7 @@
 
 This project is an end-to-end test automation suite for the OrangeHRM open-source
 demo application (https://opensource-demo.orangehrmlive.com), built with Playwright
-and JavaScript.
+and TypeScript.
 
 The goal is to demonstrate a maintainable, professional-grade automated test suite
 covering authentication, core HR workflows, and cross-browser reliability.
@@ -69,11 +69,11 @@ covering authentication, core HR workflows, and cross-browser reliability.
 
 | Suite          | Area                          | Test Cases | Status        |
 |----------------|-------------------------------|-----------:|---------------|
-| login.spec.js  | Authentication                | 8          | Complete      |
-| dashboard.spec.js | Dashboard widgets          | 5          | Complete      |
-| pim.spec.js    | Employee management           | 5          | Complete      |
-| admin.spec.js  | User management & roles       | 5          | Complete      |
-| leave.spec.js  | Leave management              | TBD        | Excluded  |
+| login.spec.ts  | Authentication                | 8          | Complete      |
+| dashboard.spec.ts | Dashboard widgets          | 5          | Complete      |
+| pim.spec.ts    | Employee management           | 5          | Complete      |
+| admin.spec.ts  | User management & roles       | 5          | Complete      |
+| leave.spec.ts  | Leave management              | TBD        | Excluded  |
 
 ---
 
@@ -92,6 +92,6 @@ quirks worth recording.
 - **Application:** OrangeHRM open-source demo
 - **URL:** https://opensource-demo.orangehrmlive.com
 - **Browsers:** Chromium, Firefox, WebKit
-- **Framework:** Playwright (JavaScript)
+- **Framework:** Playwright (TypeScript)
 - **CI:** GitHub Actions
 - **Reporting:** Allure / Playwright HTML report
