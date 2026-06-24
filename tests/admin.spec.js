@@ -3,11 +3,18 @@ import { AddUserPage } from "../pages/AddUserPage";
 import { UserListPage } from "../pages/UserListPage";
 
 test.describe('Admin', () => {
-    test('Add a new user', async ({ page }) => {
+    test('Add a new user', async ({ page, request }) => {
+        const firstName = 'UserOwner';
+        const lastName = `Add${Date.now()}`;
+        const createResponse = await request.post('/web/index.php/api/v2/pim/employees', {
+            data: { firstName, lastName },
+        });
+        expect(createResponse.status()).toBe(200);
+ 
         const uniqueUser = `user${Date.now()}`;
         const newUser = new AddUserPage(page);
         await newUser.goto();
-        await newUser.addUser('Admin', 'Ranga  Akunuri', 'Enabled', uniqueUser, 'Password123', 'Password123');
+        await newUser.addUser('Admin', `${firstName} ${lastName}`, 'Enabled', uniqueUser, 'Password123', 'Password123');
         await expect(page.getByText(uniqueUser)).toBeVisible();
     });
 
@@ -26,12 +33,20 @@ test.describe('Admin', () => {
         await expect(page.getByText('Passwords do not match')).toBeVisible();
     })
     
-    test('Password Mismatch', async ({ page }) => {
+    test('Password Mismatch', async ({ page, request }) => {
+        const firstName = 'UserOwner';
+        const lastName = `Mismatch${Date.now()}`;
+        const createResponse = await request.post('/web/index.php/api/v2/pim/employees', {
+            data: { firstName, lastName },
+        });
+        expect(createResponse.status()).toBe(200);
+ 
         const uniqueUser = `user${Date.now()}`;
         const passwordMismatch = new AddUserPage(page);
         await passwordMismatch.goto();
-        await passwordMismatch.addUser('Admin', 'Ranga  Akunuri', 'Enabled', uniqueUser, 'Password1', 'Password123');
+        await passwordMismatch.addUser('Admin', `${firstName} ${lastName}`, 'Enabled', uniqueUser, 'Password1', 'Password123');
         await expect(page.getByText('Passwords do not match')).toBeVisible();
+
     })
 
     test('Search non-existent user', async ({ page }) => {
